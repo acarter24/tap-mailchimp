@@ -44,10 +44,10 @@ class Tapmailchimp(Tap):
         """
         return [
             streams.CampaignsStream(self),
-            # streams.ReportsEmailActivity(self),
+            streams.ReportsEmailActivity(self),
             streams.ReportsUnsubscribes(self),
-            # streams.ListsStream(self),
-            # streams.ListsMembersStream(self),
+            streams.ListsStream(self),
+            streams.ListsMembersStream(self),
         ]
 
 
