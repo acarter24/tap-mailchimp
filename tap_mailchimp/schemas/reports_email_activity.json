@@ -48,6 +48,12 @@
         ],
         "format": "date-time"
       },
+      "activity_index": {
+        "type": [
+          "null",
+          "integer"
+        ]
+      },
       "ip": {
         "type": [
           "null",

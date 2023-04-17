@@ -42,6 +42,7 @@ class ReportsEmailActivity(MailchimpStream):
         'action',
         'email_id',
         'timestamp',
+        'activity_index',
     ]
     ignore_parent_replication_key = True
     replication_key = 'timestamp'
@@ -50,7 +51,8 @@ class ReportsEmailActivity(MailchimpStream):
         for record in self.request_records(context):
             transformed_record = self.post_process(record, context)
             activities = transformed_record.pop('activity')
-            for activity in activities:
+            for pos, activity in enumerate(activities):
+                activity['activity_index'] = pos
                 yield {**transformed_record, **activity}
 
     def get_url_params(self, context: dict | None, next_page_token: Any | None) -> dict[str, Any]:
