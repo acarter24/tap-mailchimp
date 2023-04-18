@@ -67,6 +67,11 @@ class ReportsEmailActivity(MailchimpStream):
             }
 
         return list(activities.values())
+    
+    def post_process(self, row: dict, context: dict | None = None) -> dict | None:
+        """
+        IP is a primary key. Needs to be populated for MSSQL"""
+        row['ip'] = row.get('ip', '')
 
 
     def get_records(self, context: dict | None) -> Iterable[dict[str, Any]]:
