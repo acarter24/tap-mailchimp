@@ -47,6 +47,7 @@ class ReportsEmailActivity(MailchimpStream):
         'action',
         'email_id',
         'timestamp',
+        'ip',
     ]
     ignore_parent_replication_key = True
     replication_key = 'timestamp'
