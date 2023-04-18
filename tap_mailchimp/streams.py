@@ -29,6 +29,11 @@ class CampaignsStream(MailchimpStream):
         return {
             'campaign_id': record['id']
         }
+    
+    def post_process(self, row: dict, context: dict | None = None) -> dict | None:
+        if row['send_time'] == "":  # schema expects null or datetime as string
+            row['send_time'] = None
+        return super().post_process(row, context)
 
 
 class ReportsEmailActivity(MailchimpStream):
@@ -42,17 +47,33 @@ class ReportsEmailActivity(MailchimpStream):
         'action',
         'email_id',
         'timestamp',
-        'activity_index',
     ]
     ignore_parent_replication_key = True
     replication_key = 'timestamp'
+
+    @staticmethod
+    def _dedupe_activities(activities: List[dict]) -> List[Dict]:
+        """
+        Sometimes the activities list contain exact duplicates. i.e. two open events at identical timestamps
+        This presents an issue as action and timestamp are used as a PK for the table.
+
+        Return: deduped list of these activities
+        """
+        activities = {
+            frozenset(item.items()): item 
+            for item 
+            in activities
+            }
+
+        return list(activities.values())
+
 
     def get_records(self, context: dict | None) -> Iterable[dict[str, Any]]:
         for record in self.request_records(context):
             transformed_record = self.post_process(record, context)
             activities = transformed_record.pop('activity')
-            for pos, activity in enumerate(activities):
-                activity['activity_index'] = pos
+            activities = self._dedupe_activities(activities)
+            for activity in activities:
                 yield {**transformed_record, **activity}
 
     def get_url_params(self, context: dict | None, next_page_token: Any | None) -> dict[str, Any]:
