@@ -42,13 +42,7 @@ class ReportsEmailActivity(MailchimpStream):
     path = '/reports/{campaign_id}/email-activity'
     parent_stream_type = CampaignsStream
     response_key = 'emails'
-    primary_keys = [
-        'campaign_id',
-        'action',
-        'email_id',
-        'timestamp',
-        'ip',
-    ]
+    primary_keys = []
     ignore_parent_replication_key = True
     replication_key = 'timestamp'
 
@@ -67,13 +61,6 @@ class ReportsEmailActivity(MailchimpStream):
             }
 
         return list(activities.values())
-    
-    def post_process(self, row: dict, context: dict | None = None) -> dict | None:
-        """
-        IP is a primary key. Needs to be populated for MSSQL"""
-        row['ip'] = row.get('ip', '')
-        return row
-
 
     def get_records(self, context: dict | None) -> Iterable[dict[str, Any]]:
         for record in self.request_records(context):
