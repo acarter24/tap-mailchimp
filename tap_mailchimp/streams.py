@@ -29,11 +29,6 @@ class CampaignsStream(MailchimpStream):
         return {
             'campaign_id': record['id']
         }
-    
-    def post_process(self, row: dict, context: dict | None = None) -> dict | None:
-        if row['send_time'] == "":  # schema expects null or datetime as string
-            row['send_time'] = None
-        return super().post_process(row, context)
 
 
 class ReportsEmailActivity(MailchimpStream):

@@ -164,18 +164,18 @@ class MailchimpStream(RESTStream):
         """
         # TODO: Parse response body and return a set of records.
         yield from extract_jsonpath(self.records_jsonpath, input=response.json())
-
+    
     def post_process(self, row: dict, context: dict | None = None) -> dict | None:
-        """As needed, append or transform raw data to match expected structure.
-
-        Args:
-            row: An individual record from the stream.
-            context: The stream context.
-
-        Returns:
-            The updated record dictionary, or ``None`` to skip the record.
         """
-        # TODO: Delete this method if not needed.
+        This API returns empty strings in place of nulls
+        Need to convert these to true nulls to get correct datetime handling,
+        otherwise errors from trying to generate datetime from "".
+        """
+        row = {
+            k: None if v == "" else v
+            for k,v
+            in row.items()
+        }
         return row
     
     @property
