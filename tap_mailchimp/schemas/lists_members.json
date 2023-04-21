@@ -25,6 +25,18 @@
           "string"
         ]
       },
+      "contact_id": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "full_name": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
       "email_type": {
         "type": [
           "null",
@@ -41,6 +53,12 @@
         "type": [
           "null",
           "string"
+        ]
+      },
+      "consents_to_one_to_one_messaging": {
+        "type": [
+          "null",
+          "boolean"
         ]
       },
       "merge_fields": {
