@@ -1,0 +1,73 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "email_id": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "email_address": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "merge_fields": {
+        "type": "object"
+      },
+      "vip": {
+        "type": [
+          "null",
+          "boolean"
+        ]
+      },
+      "status": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "open_count": {
+        "type": [
+          "null",
+          "integer"
+        ]
+      },
+      "last_open": {
+        "type": [
+          "null",
+          "string"
+        ],
+        "format": "date-time"
+      },
+      "absplit_group": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "campaign_id": {
+        "type": [
+          "string"
+        ]
+      },
+      "list_id": {
+        "type": [
+          "string"
+        ]
+      },
+      "list_is_active": {
+        "type": [
+          "boolean"
+        ]
+      },
+      "gmt_offset": {
+        "type": [
+          "null",
+          "integer"
+        ]
+      }
+    }
+  }

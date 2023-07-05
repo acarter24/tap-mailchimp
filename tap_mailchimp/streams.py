@@ -71,6 +71,19 @@ class ReportsEmailActivity(MailchimpStream):
         # then specialise for this endpoint only with the 'since last changed' param
         params['since'] = self.get_starting_timestamp(context)
         return params
+    
+class ReportsSentTo(MailchimpStream):
+
+    name = 'reports_sent_to'
+    path = '/reports/{campaign_id}/sent-to'
+    parent_stream_type = CampaignsStream
+    response_key = 'sent_to'
+    replication_method = 'FULL_TABLE'
+    primary_keys = ['campaign_id', 'email_id']
+    ignore_parent_replication_key = True
+    exclude_fields = [
+        '_links',
+    ]
 
 
 class ListsStream(MailchimpStream):

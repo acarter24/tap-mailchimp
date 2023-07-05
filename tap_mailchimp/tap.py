@@ -48,6 +48,7 @@ class Tapmailchimp(Tap):
             streams.ReportsUnsubscribes(self),
             streams.ListsStream(self),
             streams.ListsMembersStream(self),
+            streams.ReportsSentTo(self),
         ]
 
 
