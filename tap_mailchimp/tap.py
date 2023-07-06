@@ -43,12 +43,15 @@ class Tapmailchimp(Tap):
             A list of discovered streams.
         """
         return [
+            # Campaign stream and children
             streams.CampaignsStream(self),
             streams.ReportsEmailActivity(self),
             streams.ReportsUnsubscribes(self),
+            streams.ReportsSentTo(self),
+
+            # List stream and children
             streams.ListsStream(self),
             streams.ListsMembersStream(self),
-            streams.ReportsSentTo(self),
         ]
 
 

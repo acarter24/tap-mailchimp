@@ -95,8 +95,6 @@ class ListsMembersStream(MailchimpStream):
     ignore_parent_replication_key = True
     exclude_fields = [
         '_links',
-        'merge_fields',
-        'location',
     ]
     replication_key = 'last_changed'
 
