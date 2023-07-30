@@ -67,6 +67,12 @@
           "object"
         ]
       },
+      "interests": {
+        "type": [
+          "null",
+          "object"
+        ]
+      },
       "stats": {
         "type": [
           "null",
