@@ -31,7 +31,6 @@ class Tapmailchimp(Tap):
         th.Property(
             "dc",
             th.StringType,
-            title="Data Center",
             required=True,
             description="Your Mailchimp DC",
         ),
