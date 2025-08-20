@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+        "response_id": {
+            "type": [
+            "string"
+            ]
+        },
+        "submitted_at": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+        "contact": {
+            "type": [
+            "object"
+            ]
+        },
+        "survey_id": {
+            "type": [
+            "string"
+            ]
+        },
+        "is_new_contact":{
+            "type": [
+            "boolean"
+            ]
+        }
+    }
+}
